@@ -15,13 +15,19 @@ lazy val root = project
   .in(file("."))
   .enablePlugins(SiteScaladocPlugin, PreprocessPlugin)
   .settings(
-    organization := "com.snowplowanalytics",
-    name := "scala-maxmind-iplookups",
-    description := "Scala wrapper for MaxMind GeoIP2 library",
-    scalaVersion := "3.3.0",
+    organization       := "com.snowplowanalytics",
+    name               := "scala-maxmind-iplookups",
+    description        := "Scala wrapper for MaxMind GeoIP2 library",
+    scalaVersion       := "3.3.0",
     crossScalaVersions := Seq("3.3.0", "2.13.10", "2.12.17"),
-    javacOptions := BuildSettings.javaCompilerOptions,
-    scalafmtOnCompile := true
+    javacOptions       := BuildSettings.javaCompilerOptions,
+    scalafmtOnCompile  := true,
+    githubOwner        := "SakulK",
+    githubRepository   := "scala-maxmind-iplookups",
+    githubTokenSource := TokenSource.Or(
+      TokenSource.Environment("GITHUB_TOKEN"),
+      TokenSource.Environment("SHELL")
+    )
   )
   .settings(BuildSettings.publishSettings)
   .settings(BuildSettings.docSettings)

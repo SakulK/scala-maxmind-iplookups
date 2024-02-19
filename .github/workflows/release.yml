@@ -2,8 +2,6 @@ name: RELEASE
 
 on:
   push:
-    tags:
-      - '*'
 
 jobs:
   release:
@@ -11,21 +9,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - uses: coursier/cache-action@v6
-
-    - name: Make site
-      run: sbt makeSite
-
-    - name: Publish ScalaDoc
-      uses: JamesIves/github-pages-deploy-action@v4.2.5
-      with:
-        branch: gh-pages
-        folder: target/site
-        clean: false
-
-    - name: Deploy snowplow-maxmind-iplookups to Maven Central
-      run: sbt ci-release
+    - name: Deploy snowplow-maxmind-iplookups to Github Packages
+      run: sbt publish
       env:
-        PGP_PASSPHRASE: ${{ secrets.SONA_PGP_PASSPHRASE }}
-        PGP_SECRET: ${{ secrets.SONA_PGP_SECRET }}
-        SONATYPE_USERNAME: ${{ secrets.SONA_USER }}
-        SONATYPE_PASSWORD: ${{ secrets.SONA_PASS }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
