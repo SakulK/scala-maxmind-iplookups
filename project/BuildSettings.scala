@@ -17,9 +17,6 @@ import sbt._
 import com.typesafe.sbt.site.SitePlugin.autoImport.siteSubdirName
 import com.typesafe.sbt.site.SiteScaladocPlugin.autoImport._
 
-// dynver plugin
-import sbtdynver.DynVerPlugin.autoImport._
-
 // Scoverage
 import scoverage.ScoverageKeys._
 
@@ -36,7 +33,6 @@ object BuildSettings {
     licenses += ("Apache-2.0", url("http://www.apache.org/licenses/LICENSE-2.0.html")),
     pomIncludeRepository := { _ => false },
     homepage := Some(url("http://snowplowanalytics.com")),
-    ThisBuild / dynverVTagPrefix := false, // Otherwise git tags required to have v-prefix
     developers := List(
       Developer(
         "Snowplow Analytics Ltd",
