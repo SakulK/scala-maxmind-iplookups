@@ -28,6 +28,7 @@ object BuildSettings {
   )
 
   lazy val publishSettings = Seq(
+    version := "0.8.1-scala-3-build",
     publishArtifact := true,
     Test / publishArtifact := false,
     licenses += ("Apache-2.0", url("http://www.apache.org/licenses/LICENSE-2.0.html")),
